@@ -28,13 +28,18 @@ server.get('/webhook', (req, res) =>  {
   ZOAClient.api('getprofile', { uid: userId }, function(response) {
     var userProfile = response.data; 
     var message = userProfile.displayName;
-    sendTextMessage(userId, "Xin chào bạn " + message);
+    sendTextMessage(userId, "Xin chào bạn " + message),then(function(response) {
+
+    });
   })
 })
 
 function sendTextMessage(userId, message) {
-   ZOAClient.api('sendmessage/text', 'POST', {uid: userId, message: message}, function(response) {
-  })
+  return new Promise(function(resolve,reject){
+    ZOAClient.api('sendmessage/text', 'POST', {uid: userId, message: message}, function(response) {
+      resolve(response);
+    })
+  });   
 }
   
 var listener = server.listen(process.env.PORT || 3000, process.env.IP || "0.0.0.0", function(){
