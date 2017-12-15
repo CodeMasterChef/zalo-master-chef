@@ -13,7 +13,6 @@ var zaConfig = {
 }
 var ZOAClient = new ZaloOA(zaConfig);
 
-
 server.get('/', (req, res) => 
 {
   res.send('Hello World!');
