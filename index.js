@@ -2,10 +2,13 @@
 var express = require('express');
 var ZaloOA = require('zalo-sdk').ZaloOA;
  
+var oaid = process.env.OAID;
+var secretkey = process.env.SECRETKEY;
+
 const server = express(); 
 var zaConfig = {
-    oaid: '3726559350739287571',
-    secretkey: 'Q72RCPL86JUZ4RyGM4Mi'
+    oaid: oaid,
+    secretkey: secretkey
 }
 var ZOAClient = new ZaloOA(zaConfig);
 
@@ -24,7 +27,7 @@ server.get('/webhook', (req, res) =>  {
   ZOAClient.api('getprofile', { uid: userId }, function(response) {
     var userProfile = response.data; 
     var message = userProfile.displayName;
-    sendTextMessage(userId, "Xin chào: " + message);
+    sendTextMessage(userId, "Xin chào bạn " + message);
   })
 })
 
