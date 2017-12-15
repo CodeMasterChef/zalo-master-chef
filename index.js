@@ -3,12 +3,13 @@ var express = require('express');
 var ZaloOA = require('zalo-sdk').ZaloOA;
  
 var oaid = process.env.OAID;
-var secretkey = process.env.SECRETKEY;
-
+var secretKey = process.env.SECRET_KEY;
+console.log(oaid);
+console.log(secretKey);
 const server = express(); 
 var zaConfig = {
     oaid: oaid,
-    secretkey: secretkey
+    secretkey: secretKey
 }
 var ZOAClient = new ZaloOA(zaConfig);
 
