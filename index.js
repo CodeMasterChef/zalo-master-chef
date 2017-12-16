@@ -3,7 +3,7 @@ var express = require('express');
 var ZaloOA = require('zalo-sdk').ZaloOA;
 var request = require('request');
 
-var jsonFile = JSON.parse(require('./final-rel-path.json'));
+var jsonFile = require('./final-rel-path.json');
 
 // constant
 var MUA_HANG = 'mua hàng';
@@ -69,8 +69,7 @@ server.get('/webhook', (req, res) => {
           break;
 
         case 'saleAsking':
-          // var saleAsking = require('./saleAsking.js')(ZOAClient, jsonFile);
-          console.log(jsonFile);
+          var saleAsking = require('./saleAsking.js')(ZOAClient, jsonFile, body);
           break;
 
         default:
