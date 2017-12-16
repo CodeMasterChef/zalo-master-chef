@@ -56,7 +56,7 @@ server.get('/webhook', (req, res) => {
     var message = userProfile.displayName;
     common.sendTextMessage(userId, "Xin chào bạn " + message);
 
-    var action = [{
+    var actions = [{
         action: 'oa.query.show',
         title: 'Send interactive messages',
         description: 'This is a test for API send interactive messages',
@@ -71,7 +71,7 @@ server.get('/webhook', (req, res) => {
         }
       }];
   
-    common.sendInteractionMessage(userId, params);
+    common.sendInteractionMessage(userId, actions);
   });
 })
 
