@@ -50,6 +50,27 @@ server.get('/webhook', (req, res) => {
   }, function(response) {
     console.log(response);
   });
+
+  var params = {
+    uid: '',
+    actionlist: [{
+        action: 'oa.open.inapp',
+        title: 'Send interactive messages',
+        description: 'This is a test for API send interactive messages',
+        thumb: 'https://developers.zalo.me/web/static/images/bg.jpg',
+        href: 'https://developers.zalo.me',
+        data: 'https://developers.zalo.me',
+        popup: {
+            title: 'Open Website Zalo For Developers',
+            desc: 'Click ok to visit Zalo For Developers and read more Document',
+            ok: 'ok',
+            cancel: 'cancel'
+        }
+    }]
+  }
+  ZOAClient.api('sendmessage/actionlist', 'POST', params, function(response) {
+      console.log(response);
+  });
 })
 
 function sendTextMessage(userId, message) {
