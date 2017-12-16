@@ -64,7 +64,7 @@ server.get('/webhook', (req, res) => {
 
     request(options, function (error, response, body) {
       var data = JSON.parse(body).entities;
-      switch (Object.keys(data)) {
+      switch (Object.keys(data)[0]) {
         case 'greetingAsking':
           common.sendTextMessage(userId, 'Xin chào, ' + userName);
           break;
