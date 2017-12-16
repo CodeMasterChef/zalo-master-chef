@@ -60,32 +60,87 @@ server.get('/webhook', (req, res) => {
       linktitle: 'Sản phẩm',
       linkdes: 'abc',
       linkthumb: 'https://zalo-hackathon.herokuapp.com/public/images/42-56352-samsung-e1200-14-300x300.jpg'
-    },
-    {
-      link: 'https://developers.zalo.me/1',
-      linktitle: 'Sản phẩm1',
-      linkdes: 'abc',
-      linkthumb: 'https://zalo-hackathon.herokuapp.com/public/images/42-56352-samsung-e1200-14-300x300.jpg'
-    },
-    {
-      link: 'https://developers.zalo.me/2',
-      linktitle: 'Sản phẩm2',
-      linkdes: 'abc',
-      linkthumb: 'https://zalo-hackathon.herokuapp.com/public/images/42-56352-samsung-e1200-14-300x300.jpg'
-    },
-    {
-      link: 'https://developers.zalo.me/3',
-      linktitle: 'Sản phẩm3',
-      linkdes: 'abc',
-      linkthumb: 'https://zalo-hackathon.herokuapp.com/public/images/42-56352-samsung-e1200-14-300x300.jpg'
-    },
-    {
-      link: 'https://developers.zalo.me/4',
-      linktitle: 'Sản phẩm4',
-      linkdes: 'abc',
-      linkthumb: 'https://zalo-hackathon.herokuapp.com/public/images/42-56352-samsung-e1200-14-300x300.jpg'
     }]
     sendLinkMessage(userId, links);
+
+    var params = {
+      uid: userId,
+      actionlist: [{
+        action: 'oa.open.inapp',
+        title: 'Send interactive messages',
+        description: 'This is a test for API send interactive messages',
+        thumb: 'https://developers.zalo.me/web/static/images/bg.jpg',
+        href: 'https://developers.zalo.me',
+        data: 'https://developers.zalo.me',
+        popup: {
+          title: 'Open Website Zalo For Developers',
+          desc: 'Click ok to visit Zalo For Developers and read more Document',
+          ok: 'ok',
+          cancel: 'cancel'
+        }
+      },
+      {
+        action: 'oa.open.inapp',
+        title: 'Send interactive messages',
+        description: 'This is a test for API send interactive messages',
+        thumb: 'https://developers.zalo.me/web/static/images/bg.jpg',
+        href: 'https://developers.zalo.me',
+        data: 'https://developers.zalo.me',
+        popup: {
+          title: 'Open Website Zalo For Developers',
+          desc: 'Click ok to visit Zalo For Developers and read more Document',
+          ok: 'ok',
+          cancel: 'cancel'
+        }
+      },
+      {
+        action: 'oa.open.inapp',
+        title: 'Send interactive messages',
+        description: 'This is a test for API send interactive messages',
+        thumb: 'https://developers.zalo.me/web/static/images/bg.jpg',
+        href: 'https://developers.zalo.me',
+        data: 'https://developers.zalo.me',
+        popup: {
+          title: 'Open Website Zalo For Developers',
+          desc: 'Click ok to visit Zalo For Developers and read more Document',
+          ok: 'ok',
+          cancel: 'cancel'
+        }
+      },
+      {
+        action: 'oa.open.inapp',
+        title: 'Send interactive messages',
+        description: 'This is a test for API send interactive messages',
+        thumb: 'https://developers.zalo.me/web/static/images/bg.jpg',
+        href: 'https://developers.zalo.me',
+        data: 'https://developers.zalo.me',
+        popup: {
+          title: 'Open Website Zalo For Developers',
+          desc: 'Click ok to visit Zalo For Developers and read more Document',
+          ok: 'ok',
+          cancel: 'cancel'
+        }
+      },
+      {
+        action: 'oa.open.inapp',
+        title: 'Send interactive messages',
+        description: 'This is a test for API send interactive messages',
+        thumb: 'https://developers.zalo.me/web/static/images/bg.jpg',
+        href: 'https://developers.zalo.me',
+        data: 'https://developers.zalo.me',
+        popup: {
+          title: 'Open Website Zalo For Developers',
+          desc: 'Click ok to visit Zalo For Developers and read more Document',
+          ok: 'ok',
+          cancel: 'cancel'
+        }
+      }]
+    };
+  
+    ZOAClient.api('sendmessage/actionlist', 'POST', params, function (response) {
+      console.log(response);
+    });
+    sendInteractionMessage(userId, params);
   });
 })
 
