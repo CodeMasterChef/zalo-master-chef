@@ -41,8 +41,15 @@ server.get('/webhook', (req, res) => {
   }
   ZOAClient.api('sendmessage/links', 'POST', params, function (response) {
     console.log(response);
-  })
+  });
 
+  ZOAClient.api('sendmessage/image', 'POST', {
+    uid: userId, 
+    message: 'Zalo SDK Nodejs', 
+    imageid: '57-134185-combo-sac-du-phong-10000-mah-cap-micro-usb-20-cm-a-18-300x300.jpg'
+  }, function(response) {
+    console.log(response);
+  });
 })
 
 function sendTextMessage(userId, message) {
