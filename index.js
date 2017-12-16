@@ -44,6 +44,8 @@ var zaConfig = {
 var ZOAClient = new ZaloOA(zaConfig);
 var common = require('./common.js')(ZOAClient);
 
+global.cache = [];
+
 server.get('/', (req, res) => {
   res.send('Hello World! ', oaid, secretKey);
   console.log("Server is started");
@@ -58,10 +60,13 @@ server.get('/webhook', (req, res) => {
   console.log(message, userId);
   // lấy thông tin người dùng 
   ZOAClient.api('getprofile', { uid: userId }, function (response) {
-   
     console.log(response);
+    if(response.errorCode < 0) {
+      common.sendTextMessage(userId, 'Đã xảy ra lỗi, ' + response.errorMsg);
+      return;
+    }
     var profile = response.data;
-    var username = profile['displayName'];
+    var username = profile.displayName;
     var options = {
       url: encodeURI('https://api.wit.ai/message?v=16/12/2017&q=' + message),
       headers: {
@@ -75,21 +80,35 @@ server.get('/webhook', (req, res) => {
       console.log(mainCase);
       switch (mainCase) {
         case 'greetingAsking':
-          common.sendTextMessage(userId, 'Xin chào, ' + username);
+          common.sendTextMessage(userId, 'Xin chào, ' + username + " .Mình là Chef, chat bot tư vấn tự động. Mình có thể giúp gì cho bạn.");
           break;
         case 'saleAsking':
+         common.sendTextMessage("Đợi mình kiểm tra tí nhé.");
           var saleAsking = require('./saleAsking.js')(ZOAClient, userId, jsonFile, data);
           saleAsking.excute();
           break;
         case 'fullTechInfoAsking':
+         common.sendTextMessage("Đợi mình xem tí nhé.");
           var fullTechInfoAsking = require('./fullTechInfoAsking.js')(ZOAClient, userId, jsonFile, data);
           fullTechInfoAsking.execute();
           break;
         case 'policyAsking':
+          common.sendTextMessage("....");
           var policyAsking = require('./policyAsking.js')(ZOAClient, userId, jsonFile, data);
           policyAsking.execute();
           break;
+        case 'priceAsking':
+          common.sendTextMessage("Để mình kiểm tra ngay giá của nó.");
+          var priceAsking = require('./priceAsking.js')(ZOAClient, userId, jsonFile, data);
+          priceAsking.execute();
+          break;
+        case 'memory':
+          common.sendTextMessage("OK nhè.");
+          var priceAskingEnhance = require('./priceAskingEnhance.js')(ZOAClient, userId, jsonFile, data);
+          priceAskingEnhance.execute(data.memory[0].value);
+          break;
         default:
+          // cung cấp thêm thông tin bộ nhớ 
           common.sendTextMessage(userId, 'Xin chào, ' + username + ' mình không hiểu lắm!');
           break;
       }
