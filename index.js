@@ -54,6 +54,7 @@ server.get('/webhook', (req, res) => {
     var userProfile = response.data;
     var message = userProfile.displayName;
     sendTextMessage(userId, "Xin chào bạn " + message);
+    sendImageMessage(userId, "Sản phẩn", 'https://zalo-hackathon.herokuapp.com/public/images/42-56352-samsung-e1200-14-300x300.jpg');
   });
 })
 
