@@ -17,13 +17,13 @@ module.exports = function (ZOAClient, userId, data, responseAI) {
                 action: 'oa.query.hide',
                 title: isExisted.category + ' - ' + isExisted.name,
                 description: isExisted.price,
-                thumb: 'https://95b85ba4.ngrok.io/public/images/' + isExisted.imgUrl,
-                data: 'Tư vấn',
+                thumb: 'https://zalo-hackathon.herokuapp.com/public/images/' + isExisted.imgUrl,
+                data: 'Tư vấn ' + keyword,
                 popup: {
                     title: 'Lựa chọn',
                     desc: 'Thích thì sao ngại click để rinh ngay về nhà.',
-                    ok: 'Tư Vấn',
-                    cancel: 'Đặt Hàng'
+                    ok: 'Tư Vấn Thêm',
+                    cancel: 'Gọi Đặt Hàng'
                 }
             }]
             common.sendInteractionMessage(userId, actions);
