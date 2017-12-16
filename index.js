@@ -48,11 +48,11 @@ server.get('/webhook', (req, res) => {
   ZOAClient.api('getprofile', { uid: userId }, function (response) {
     var userProfile = response.data;
     var message = userProfile.displayName;
-    sendTextMessage(userId, "Xin chào bạn " + message, data.msgId);
+    sendTextMessage(userId, "Xin chào bạn " + message);
   });
 })
 
-function sendTextMessage(userId, message, msgId) {
+function sendTextMessage(userId, message) {
   ZOAClient.api('sendmessage/text', 'POST', { uid: userId, message: message }, function (response) {
     
   });
