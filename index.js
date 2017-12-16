@@ -65,10 +65,11 @@ server.get('/webhook', (req, res) => {
       var data = JSON.parse(body).entities;
       switch (Object.keys(data)) {
         case 'greetingAsking':
-            common.sendTextMessage(userId, 'Xin chào, ' + data.name);
+          common.sendTextMessage(userId, 'Xin chào, ' + data.name);
           break;
 
         default:
+          common.sendTextMessage(userId, 'Xin chào, ' + data.name + ' mình không hiểu lắm!');
           break;
       }
     });
