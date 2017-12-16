@@ -65,18 +65,18 @@ server.get('/webhook', (req, res) => {
       // var result = JSON.parse(response.entities);
       console.log(response);
       // console.log(result);
-      if (response['priceAsking'].confidence > THRESHOLD) {
-        switch (key) {
-          case value:
+      // if (response['priceAsking'].confidence > THRESHOLD) {
+      //   switch (key) {
+      //     case value:
 
-            break;
+      //       break;
 
-          default:
-            break;
-        }
-      } else {
-        common.sendTextMessage();
-      }
+      //     default:
+      //       break;
+      //   }
+      // } else {
+      //   common.sendTextMessage();
+      // }
     });
   });
 })
