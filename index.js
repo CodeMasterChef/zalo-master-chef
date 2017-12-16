@@ -22,8 +22,6 @@ server.get('/webhook', (req, res) => {
   var data = req.query;
   var message = data.message;
   var userId = data.fromuid;
-  console.log(data);
-  console.log(req);
   console.log(message, userId);
   // lấy thông tin người dùng 
   ZOAClient.api('getprofile', { uid: userId }, function (response) {
@@ -35,9 +33,7 @@ server.get('/webhook', (req, res) => {
 
 function sendTextMessage(userId, message, msgId) {
   ZOAClient.api('sendmessage/text', 'POST', { uid: userId, message: message }, function (response) {
-    ZOAClient.api('getmessagestatus', { msgid: msgId }, function (response) {
-      console.log(response);
-    });
+    
   });
 }
 
