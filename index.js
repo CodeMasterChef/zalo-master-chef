@@ -15,7 +15,7 @@ var ZOAClient = new ZaloOA(zaConfig);
 
 server.get('/', (req, res) => 
 {
-  res.send('Hello World!');
+  res.send('Hello World! ', oaid , secretKey);
   console.log("Server is started");
 })
 server.get('/webhook', (req, res) =>  { 
@@ -28,18 +28,13 @@ server.get('/webhook', (req, res) =>  {
   ZOAClient.api('getprofile', { uid: userId }, function(response) {
     var userProfile = response.data; 
     var message = userProfile.displayName;
-    sendTextMessage(userId, "Xin chào bạn " + message),then(function(response) {
-
-    });
+    sendTextMessage(userId, "Xin chào bạn " + message);
   })
 })
 
 function sendTextMessage(userId, message) {
-  return new Promise(function(resolve,reject){
     ZOAClient.api('sendmessage/text', 'POST', {uid: userId, message: message}, function(response) {
-      resolve(response);
-    })
-  });   
+    });   
 }
   
 var listener = server.listen(process.env.PORT || 3000, process.env.IP || "0.0.0.0", function(){
