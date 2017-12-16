@@ -53,12 +53,11 @@ server.get('/webhook', (req, res) => {
   ZOAClient.api('getprofile', { uid: userId }, function (response) {
     var profile = response.data;
     var username = profile.displayName;
-
+    console.log(encodeURI('https://api.wit.ai/message?v=16/12/2017&q=' + message));
     var options = {
-      url: 'https://api.wit.ai/message?v=16/12/2017&q=' + message,
+      url: encodeURI('https://api.wit.ai/message?v=16/12/2017&q=' + message),
       headers: {
-        'Authorization': 'Bearer 6ACPVMBT56A2L3IYAJHKBRQQO2YCH6TN',
-        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+        'Authorization': 'Bearer 6ACPVMBT56A2L3IYAJHKBRQQO2YCH6TN'
       }
     };
 
