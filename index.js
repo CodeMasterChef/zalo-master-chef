@@ -80,12 +80,13 @@ function sendImageMessage(userId, message, imageId) {
 function sendLinkMessage(userId, links) {
   var params = {
     uid: userId,
-    links: [{
-      link: 'https://developers.zalo.me/',
-      linktitle: 'Zalo For Developers',
-      linkdes: 'Document For Developers',
-      linkthumb: 'https://developers.zalo.me/web/static/images/bg.jpg'
-    }]
+    links: links
+    // [{
+    //   link: 'https://developers.zalo.me/',
+    //   linktitle: 'Zalo For Developers',
+    //   linkdes: 'Document For Developers',
+    //   linkthumb: 'https://developers.zalo.me/web/static/images/bg.jpg'
+    // }]
   };
 
   ZOAClient.api('sendmessage/links', 'POST', params, function (response) {
