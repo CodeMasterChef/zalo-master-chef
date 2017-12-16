@@ -4,6 +4,7 @@ module.exports = function (ZOAClient, userId, data, responseAI) {
     var message = '';
 
     module.excute = function () {
+        console.log(data);
         console.log(data.hasOwnProperty('name'));
         if (!data.hasOwnProperty('name')) {
             common.sendTextMessage(userId, 'Rất tiếc! Chúng tôi hiện không mặt hàng này.');
