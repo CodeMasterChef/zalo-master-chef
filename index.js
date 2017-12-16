@@ -47,12 +47,12 @@ server.get('/webhook', (req, res) => {
   var data = req.query;
   var message = data.message;
   var userId = data.fromuid;
-  var userName = data.displayName;
 
   console.log(message, userId);
   // lấy thông tin người dùng 
   ZOAClient.api('getprofile', { uid: userId }, function (response) {
-    console.log(response);
+    var userName = response.displayName;
+
     var options = {
       url: 'https://api.wit.ai/message?v=16/12/2017&q=' + message,
       headers: {
