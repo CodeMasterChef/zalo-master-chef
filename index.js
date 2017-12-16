@@ -42,16 +42,13 @@ server.get('/', (req, res) => {
   console.log("Server is started");
 });
 
-// https.get('./final-rel-path.json', (req, res) => {
-//   console.log(req);
-// });
-
 server.get('/webhook', (req, res) => {
   console.log("User had send a message.");
   var data = req.query;
   var message = data.message;
   var userId = data.fromuid;
-  var userName = userName;
+  var userName = data.displayName;
+
   console.log(message, userId);
   // lấy thông tin người dùng 
   ZOAClient.api('getprofile', { uid: userId }, function (response) {
