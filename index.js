@@ -3,6 +3,9 @@ var express = require('express');
 var https = require('https');
 var ZaloOA = require('zalo-sdk').ZaloOA;
 
+var jsonFile = require('./final-rel-path.json');
+console.log(jsonFile);
+
 // constant
 var MUA_HANG = 'mua hàng';
 var TU_VAN = 'tư vấn';
