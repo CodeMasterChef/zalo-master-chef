@@ -51,6 +51,7 @@ server.get('/webhook', (req, res) => {
   var data = req.query;
   var message = data.message;
   var userId = data.fromuid;
+  var userName = userName;
   console.log(message, userId);
   // lấy thông tin người dùng 
   ZOAClient.api('getprofile', { uid: userId }, function (response) {
@@ -65,11 +66,11 @@ server.get('/webhook', (req, res) => {
       var data = JSON.parse(body).entities;
       switch (Object.keys(data)) {
         case 'greetingAsking':
-          common.sendTextMessage(userId, 'Xin chào, ' + data.name);
+          common.sendTextMessage(userId, 'Xin chào, ' + userName);
           break;
 
         default:
-          common.sendTextMessage(userId, 'Xin chào, ' + data.name + ' mình không hiểu lắm!');
+          common.sendTextMessage(userId, 'Xin chào, ' + userName + ' mình không hiểu lắm!');
           break;
       }
     });
