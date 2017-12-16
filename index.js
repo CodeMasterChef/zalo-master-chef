@@ -51,7 +51,8 @@ server.get('/webhook', (req, res) => {
   console.log(message, userId);
   // lấy thông tin người dùng 
   ZOAClient.api('getprofile', { uid: userId }, function (response) {
-    var userName = response.displayName;
+    var profile = response.data;
+    var username = profile.displayName;
 
     var options = {
       url: 'https://api.wit.ai/message?v=16/12/2017&q=' + message,
@@ -64,11 +65,11 @@ server.get('/webhook', (req, res) => {
       var data = JSON.parse(body).entities;
       switch (Object.keys(data)[0]) {
         case 'greetingAsking':
-          common.sendTextMessage(userId, 'Xin chào, ' + userName);
+          common.sendTextMessage(userId, 'Xin chào, ' + username);
           break;
 
         default:
-          common.sendTextMessage(userId, 'Xin chào, ' + userName + ' mình không hiểu lắm!');
+          common.sendTextMessage(userId, 'Xin chào, ' + username + ' mình không hiểu lắm!');
           break;
       }
     });
