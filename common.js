@@ -14,12 +14,6 @@ function sendTextMessage(userId, message) {
     var params = {
       uid: userId,
       links: links
-      // [{
-      //   link: 'https://developers.zalo.me/',
-      //   linktitle: 'Zalo For Developers',
-      //   linkdes: 'Document For Developers',
-      //   linkthumb: 'https://developers.zalo.me/web/static/images/bg.jpg'
-      // }]
     };
   
     ZOAClient.api('sendmessage/links', 'POST', params, function (response) {
@@ -30,20 +24,7 @@ function sendTextMessage(userId, message) {
   function sendInteractionMessage(userId, actions) {
     var params = {
       uid: userId,
-      actionlist: [{
-        action: 'oa.open.inapp',
-        title: 'Send interactive messages',
-        description: 'This is a test for API send interactive messages',
-        thumb: 'https://developers.zalo.me/web/static/images/bg.jpg',
-        href: 'https://developers.zalo.me',
-        data: 'https://developers.zalo.me',
-        popup: {
-          title: 'Open Website Zalo For Developers',
-          desc: 'Click ok to visit Zalo For Developers and read more Document',
-          ok: 'ok',
-          cancel: 'cancel'
-        }
-      }]
+      actionlist: actions
     };
   
     ZOAClient.api('sendmessage/actionlist', 'POST', params, function (response) {

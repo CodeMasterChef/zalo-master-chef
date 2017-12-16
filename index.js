@@ -56,25 +56,22 @@ server.get('/webhook', (req, res) => {
     var message = userProfile.displayName;
     common.sendTextMessage(userId, "Xin chào bạn " + message);
 
-    var params = {
-      uid: userId,
-      actionlist: [{
-        action: 'oa.query.show',
-        title: 'Send interactive messages',
-        description: 'This is a test for API send interactive messages',
-        thumb: 'https://zalo-hackathon.herokuapp.com/public/images/42-56352-samsung-e1200-14-300x300.jpg',
-        href: 'https://developers.zalo.me',
-        data: 'https://developers.zalo.me',
-        popup: {
-          title: 'Open Website Zalo For Developers',
-          desc: 'Click ok to visit Zalo For Developers and read more Document',
-          ok: 'ok',
-          cancel: 'cancel'
-        }
-      }]
-    };
+    // var action = [{
+    //     action: 'oa.query.show',
+    //     title: 'Send interactive messages',
+    //     description: 'This is a test for API send interactive messages',
+    //     thumb: 'https://zalo-hackathon.herokuapp.com/public/images/42-56352-samsung-e1200-14-300x300.jpg',
+    //     href: 'https://developers.zalo.me',
+    //     data: 'https://developers.zalo.me',
+    //     popup: {
+    //       title: 'Open Website Zalo For Developers',
+    //       desc: 'Click ok to visit Zalo For Developers and read more Document',
+    //       ok: 'ok',
+    //       cancel: 'cancel'
+    //     }
+    //   }];
   
-    common.sendInteractionMessage(userId, params);
+    // common.sendInteractionMessage(userId, params);
   });
 })
 
