@@ -1,7 +1,7 @@
 
 var express = require('express');
 var ZaloOA = require('zalo-sdk').ZaloOA;
-var common = requrie('common.js');
+var common = require('./common.js');
 
 var jsonFile = require('./final-rel-path.json');
 
@@ -74,10 +74,7 @@ server.get('/webhook', (req, res) => {
       }]
     };
   
-    ZOAClient.api('sendmessage/actionlist', 'POST', params, function (response) {
-      console.log(response);
-    });
-    sendInteractionMessage(userId, params);
+    common.sendInteractionMessage(userId, params);
   });
 })
 
