@@ -54,7 +54,14 @@ server.get('/webhook', (req, res) => {
     var userProfile = response.data;
     var message = userProfile.displayName;
     sendTextMessage(userId, "Xin chào bạn " + message);
-    sendImageMessage(userId, "Sản phẩn", 'https://zalo-hackathon.herokuapp.com/public/images/42-56352-samsung-e1200-14-300x300.jpg');
+
+    var links = [{
+      link: 'https://developers.zalo.me/',
+      linktitle: 'Sản phẩm',
+      linkdes: 'abc',
+      linkthumb: 'https://zalo-hackathon.herokuapp.com/public/images/42-56352-samsung-e1200-14-300x300.jpg'
+    }]
+    sendLinkMessage(userId, links);
   });
 })
 
@@ -104,7 +111,7 @@ function sendInteractionMessage(userId, actions) {
       }
     }]
   };
-  
+
   ZOAClient.api('sendmessage/actionlist', 'POST', params, function (response) {
     console.log(response);
   });
