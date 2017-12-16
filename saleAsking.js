@@ -14,7 +14,7 @@ module.exports = function (ZOAClient, userId, data, responseAI) {
         console.log(keyword);
         console.log(keyword.toLowerCase());
 
-        var isExisted = data.find(f => f.name.toLowerCase().indexOf(keyword.toLowerCase()) !== -1);
+        var isExisted = data.find(f => f.name.toLowerCase().indexOf(keyword.toLowerCase()));
         if (isExisted) {
             message = 'Có! Mua không?';
         } else {
