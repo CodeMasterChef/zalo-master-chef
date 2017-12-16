@@ -61,7 +61,8 @@ server.get('/webhook', (req, res) => {
     };
 
     request(options, function(error, response, body){
-      console.log(response.entities['name'][0].value);
+      var result = JSON.parse(response.entities);
+      console.log(result['name'][0].value);
     });
   });
 })
