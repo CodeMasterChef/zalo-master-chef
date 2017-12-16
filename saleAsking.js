@@ -4,7 +4,9 @@ module.exports = function (ZOAClient, userId, data, responseAI) {
     var message = '';
 
     module.excute = function () {
-        var isExisted = data.find(f => f.name.toLowerCase().indexOf(responseAI.name[0].value.toLowerCase()));
+        var isExisted;
+        if (responseAI.hasOwnProperty('name'))
+            isExisted = data.find(f => f.name.toLowerCase().indexOf(responseAI.name[0].value.toLowerCase()));
         if (isExisted) {
             message = 'Có';
         } else {
