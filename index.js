@@ -68,7 +68,7 @@ server.get('/webhook', (req, res) => {
           break;
 
         case 'saleAsking':
-          var saleAsking = require('./saleAsking.js')(ZOAClient, jsonFile, body);
+          var saleAsking = require('./saleAsking.js')(ZOAClient, jsonFile, data);
           break;
 
         default:
