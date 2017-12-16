@@ -53,38 +53,15 @@ server.get('/webhook', (req, res) => {
   console.log(message, userId);
   // lấy thông tin người dùng 
   ZOAClient.api('getprofile', { uid: userId }, function (response) {
-    var userProfile = response.data;
-    var message = userProfile.displayName;
-    common.sendTextMessage(userId, "Xin chào bạn " + message);
-
-    var actions = [{
-        action: 'oa.query.show',
-        title: 'Send interactive messages',
-        description: 'This is a test for API send interactive messages',
-        thumb: 'https://zalo-hackathon.herokuapp.com/public/images/42-56352-samsung-e1200-14-300x300.jpg',
-        href: 'https://developers.zalo.me',
-        data: 'https://developers.zalo.me',
-        popup: {
-          title: 'Open Website Zalo For Developers',
-          desc: 'Click ok to visit Zalo For Developers and read more Document',
-          ok: 'ok',
-          cancel: 'cancel'
-        }
-      }];
-  
-    common.sendInteractionMessage(userId, actions);
-
     var options = {
-      url: 'https://api.wit.ai/message?v=16/12/2017&q=Giá Iphone 6 64gb',
+      url: 'https://api.wit.ai/message?v=16/12/2017&q=' + message,
       headers: {
         'Authorization': 'Bearer 6ACPVMBT56A2L3IYAJHKBRQQO2YCH6TN'
       }
     };
 
     request(options, function(error, response, body){
-      console.log(error);
-      console.log(response);
-      console.log(body);
+      console.log(response.entities['name'][0].value);
     });
   });
 })
