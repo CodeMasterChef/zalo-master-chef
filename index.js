@@ -1,7 +1,6 @@
 
 var express = require('express');
 var ZaloOA = require('zalo-sdk').ZaloOA;
-var common = require('./common.js');
 
 var jsonFile = require('./final-rel-path.json');
 
@@ -21,19 +20,20 @@ var CAU_HINH_CHI_TIET = 'cấu hình chi tiết';
 var THONG_SO_VAT_LY = 'thông số vật lý';
 var KET_NOI_TINH_NANG = 'kết nối và tính năng';
 
-var oaid = process.env.OAID;
-var secretKey = process.env.SECRET_KEY;
 console.log(oaid);
 console.log(secretKey);
 
 const server = express();
 server.use('/public', express.static('public'));
+var oaid = process.env.OAID;
+var secretKey = process.env.SECRET_KEY;
 
 var zaConfig = {
   oaid: oaid,
   secretkey: secretKey
 }
 var ZOAClient = new ZaloOA(zaConfig);
+var common = require('./common.js')(ZOAClient);
 
 server.get('/', (req, res) => {
   res.send('Hello World! ', oaid, secretKey);
