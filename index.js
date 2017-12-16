@@ -52,7 +52,7 @@ server.get('/webhook', (req, res) => {
   });
 
   var params = {
-    uid: '',
+    uid: userId,
     actionlist: [{
         action: 'oa.open.inapp',
         title: 'Send interactive messages',
