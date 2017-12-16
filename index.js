@@ -23,7 +23,7 @@ server.get('/webhook', (req, res) => {
   var message = data.message;
   var userId = data.fromuid;
   console.log(data);
-  console.log(req.query);
+  console.log(req);
   console.log(message, userId);
   // lấy thông tin người dùng 
   ZOAClient.api('getprofile', { uid: userId }, function (response) {
@@ -32,46 +32,10 @@ server.get('/webhook', (req, res) => {
     sendTextMessage(userId, "Xin chào bạn " + message);
   });
 
-  var params = {
-    uid: userId,
-    links: [{
-      link: 'https://developers.zalo.me/',
-      linktitle: 'Zalo For Developers',
-      linkdes: 'Document For Developers',
-      linkthumb: 'https://developers.zalo.me/web/static/images/bg.jpg'
-    }]
-  }
-  ZOAClient.api('sendmessage/links', 'POST', params, function (response) {
-    console.log(response);
-  });
-
-  ZOAClient.api('sendmessage/image', 'POST', {
-    uid: userId, 
-    message: 'Zalo SDK Nodejs', 
-    'imageid': '57-134185-combo-sac-du-phong-10000-mah-cap-micro-usb-20-cm-a-18-300x300.jpg'
-  }, function(response) {
-    console.log(response);
-  });
-
-  var params = {
-    uid: userId,
-    actionlist: [{
-        action: 'oa.open.inapp',
-        title: 'Send interactive messages',
-        description: 'This is a test for API send interactive messages',
-        thumb: 'https://developers.zalo.me/web/static/images/bg.jpg',
-        href: 'https://developers.zalo.me',
-        data: 'https://developers.zalo.me',
-        popup: {
-            title: 'Open Website Zalo For Developers',
-            desc: 'Click ok to visit Zalo For Developers and read more Document',
-            ok: 'ok',
-            cancel: 'cancel'
-        }
-    }]
-  }
   ZOAClient.api('sendmessage/actionlist', 'POST', params, function(response) {
+    ZOAClient.api('getmessagestatus', {msgid: data.msgId}, function(response) {
       console.log(response);
+  })
   });
   
 })
