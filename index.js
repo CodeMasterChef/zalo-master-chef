@@ -26,6 +26,7 @@ console.log(oaid);
 console.log(secretKey);
 
 const server = express();
+server.use('/public', express.static('public'));
 
 var zaConfig = {
   oaid: oaid,
