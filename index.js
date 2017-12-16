@@ -1,6 +1,7 @@
 
 var express = require('express');
 var ZaloOA = require('zalo-sdk').ZaloOA;
+var request = require('request');
 
 var jsonFile = require('./final-rel-path.json');
 
@@ -72,6 +73,19 @@ server.get('/webhook', (req, res) => {
       }];
   
     common.sendInteractionMessage(userId, actions);
+
+    var options = {
+      url: 'https://api.wit.ai/message?v=16/12/2017&q=Giá Iphone 6 64gb',
+      headers: {
+        'Authorization': 'Bearer 6ACPVMBT56A2L3IYAJHKBRQQO2YCH6TN'
+      }
+    };
+
+    request(options, function(error, response, body){
+      console.log(error);
+      console.log(response);
+      console.log(body);
+    });
   });
 })
 
