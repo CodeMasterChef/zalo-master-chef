@@ -27,6 +27,9 @@ server.use('/public', express.static('public'));
 var oaid = process.env.OAID;
 var secretKey = process.env.SECRET_KEY;
 
+oaid = '2546696898504745117';
+secretKey = '5PBCEmZRhh7902VUKGHk';
+
 console.log(oaid);
 console.log(secretKey);
 
@@ -34,6 +37,7 @@ var zaConfig = {
   oaid: oaid,
   secretkey: secretKey
 }
+
 var ZOAClient = new ZaloOA(zaConfig);
 var common = require('./common.js')(ZOAClient);
 
@@ -62,7 +66,6 @@ server.get('/webhook', (req, res) => {
 
     request(options, function (error, response, body) {
       var data = JSON.parse(body).entities;
-      console.log(Object.keys(data)[0]);
       
       switch (Object.keys(data)[0]) {
         case 'greetingAsking':
@@ -84,8 +87,6 @@ server.get('/webhook', (req, res) => {
     });
   });
 })
-
-
 
 var listener = server.listen(process.env.PORT || 3000, process.env.IP || "0.0.0.0", function () {
   console.log("Server listening at: " + listener.address().address + ":" + listener.address().port);
