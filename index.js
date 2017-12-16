@@ -22,13 +22,13 @@ var THONG_SO_VAT_LY = 'thông số vật lý';
 var KET_NOI_TINH_NANG = 'kết nối và tính năng';
 var THRESHOLD = 0.85;
 
-console.log(oaid);
-console.log(secretKey);
-
 const server = express();
 server.use('/public', express.static('public'));
 var oaid = process.env.OAID;
 var secretKey = process.env.SECRET_KEY;
+
+console.log(oaid);
+console.log(secretKey);
 
 var zaConfig = {
   oaid: oaid,
