@@ -29,13 +29,13 @@ server.get('/webhook', (req, res) => {
   ZOAClient.api('getprofile', { uid: userId }, function (response) {
     var userProfile = response.data;
     var message = userProfile.displayName;
-    sendTextMessage(userId, "Xin chào bạn " + message);
+    sendTextMessage(userId, "Xin chào bạn " + message, data.msgId);
   });
 })
 
-function sendTextMessage(userId, message) {
+function sendTextMessage(userId, message, msgId) {
   ZOAClient.api('sendmessage/text', 'POST', { uid: userId, message: message }, function (response) {
-    ZOAClient.api('getmessagestatus', { msgid: data.msgId }, function (response) {
+    ZOAClient.api('getmessagestatus', { msgid: msgId }, function (response) {
       console.log(response);
     });
   });
