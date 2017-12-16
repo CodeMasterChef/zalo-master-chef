@@ -62,6 +62,11 @@ server.get('/webhook', (req, res) => {
 
     request(options, function (error, response, body) {
       var data = JSON.parse(body).entities;
+      if (data.hasOwnProperty('name')) {
+        common.sendTextMessage(userId, 'Xin chào, ' + username + ' mình không hiểu lắm!');
+        return;
+      }
+
       switch (Object.keys(data)[0]) {
         case 'greetingAsking':
           common.sendTextMessage(userId, 'Xin chào, ' + username);
@@ -70,10 +75,6 @@ server.get('/webhook', (req, res) => {
         case 'saleAsking':
           var saleAsking = require('./saleAsking.js')(ZOAClient, userId, jsonFile, data);
           saleAsking.excute();
-          break;
-
-        default:
-          common.sendTextMessage(userId, 'Xin chào, ' + username + ' mình không hiểu lắm!');
           break;
       }
     });
