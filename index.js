@@ -62,21 +62,15 @@ server.get('/webhook', (req, res) => {
     };
 
     request(options, function (error, response, body) {
-      // var result = JSON.parse(response.entities);
-      console.log(response);
-      // console.log(result);
-      // if (response['priceAsking'].confidence > THRESHOLD) {
-      //   switch (key) {
-      //     case value:
+      var data = JSON.parse(body).entities;
+      switch (Object.keys(data)) {
+        case 'greetingAsking':
+            common.sendTextMessage(userId, 'Xin chào, ' + data.name);
+          break;
 
-      //       break;
-
-      //     default:
-      //       break;
-      //   }
-      // } else {
-      //   common.sendTextMessage();
-      // }
+        default:
+          break;
+      }
     });
   });
 })
