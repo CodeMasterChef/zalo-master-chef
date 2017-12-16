@@ -62,26 +62,26 @@ server.get('/webhook', (req, res) => {
       linkthumb: 'https://zalo-hackathon.herokuapp.com/public/images/42-56352-samsung-e1200-14-300x300.jpg'
     },
     {
-      link: 'https://developers.zalo.me/',
-      linktitle: 'Sản phẩm',
+      link: 'https://developers.zalo.me/1',
+      linktitle: 'Sản phẩm1',
       linkdes: 'abc',
       linkthumb: 'https://zalo-hackathon.herokuapp.com/public/images/42-56352-samsung-e1200-14-300x300.jpg'
     },
     {
-      link: 'https://developers.zalo.me/',
-      linktitle: 'Sản phẩm',
+      link: 'https://developers.zalo.me/2',
+      linktitle: 'Sản phẩm2',
       linkdes: 'abc',
       linkthumb: 'https://zalo-hackathon.herokuapp.com/public/images/42-56352-samsung-e1200-14-300x300.jpg'
     },
     {
-      link: 'https://developers.zalo.me/',
-      linktitle: 'Sản phẩm',
+      link: 'https://developers.zalo.me/3',
+      linktitle: 'Sản phẩm3',
       linkdes: 'abc',
       linkthumb: 'https://zalo-hackathon.herokuapp.com/public/images/42-56352-samsung-e1200-14-300x300.jpg'
     },
     {
-      link: 'https://developers.zalo.me/',
-      linktitle: 'Sản phẩm',
+      link: 'https://developers.zalo.me/4',
+      linktitle: 'Sản phẩm4',
       linkdes: 'abc',
       linkthumb: 'https://zalo-hackathon.herokuapp.com/public/images/42-56352-samsung-e1200-14-300x300.jpg'
     }]
