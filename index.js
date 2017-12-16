@@ -54,7 +54,7 @@ server.get('/webhook', (req, res) => {
   ZOAClient.api('getprofile', { uid: userId }, function (response) {
     var userProfile = response.data;
     var message = userProfile.displayName;
-    sendTextMessage(userId, "Xin chào bạn " + message);
+    common.sendTextMessage(userId, "Xin chào bạn " + message);
 
     var params = {
       uid: userId,
