@@ -10,16 +10,14 @@ module.exports = function (ZOAClient, userId, data, responseAI) {
         }
 
         var keyword = responseAI.name[0].value;
-
-        console.log(keyword);
-        console.log(keyword.toLowerCase());
-
-        var isExisted = data.find(f => f.name.toLowerCase().indexOf(keyword.toLowerCase()));
+        var isExisted = data.filter(f => f.name.toLowerCase().indexOf(keyword.toLowerCase()));
+        console.log(isExisted);
         if (isExisted) {
             message = 'Có! Mua không?';
         } else {
             message = 'Rất tiếc! Chúng tôi hiện không mặt hàng ' + keyword + '.';
         }
+
         common.sendTextMessage(userId, message);
     }
 
