@@ -31,17 +31,13 @@ server.get('/webhook', (req, res) => {
     var message = userProfile.displayName;
     sendTextMessage(userId, "Xin chào bạn " + message);
   });
-
-  ZOAClient.api('sendmessage/actionlist', 'POST', params, function(response) {
-    ZOAClient.api('getmessagestatus', {msgid: data.msgId}, function(response) {
-      console.log(response);
-  })
-  });
-  
 })
 
 function sendTextMessage(userId, message) {
   ZOAClient.api('sendmessage/text', 'POST', { uid: userId, message: message }, function (response) {
+    ZOAClient.api('getmessagestatus', { msgid: data.msgId }, function (response) {
+      console.log(response);
+    });
   });
 }
 
