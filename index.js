@@ -54,7 +54,6 @@ server.get('/webhook', (req, res) => {
   console.log(message, userId);
   // lấy thông tin người dùng 
   ZOAClient.api('getprofile', { uid: userId }, function (response) {
-    console.log(message);
     var options = {
       url: 'https://api.wit.ai/message?v=16/12/2017&q=' + message,
       headers: {
@@ -64,7 +63,7 @@ server.get('/webhook', (req, res) => {
 
     request(options, function(error, response, body){
       // var result = JSON.parse(response.entities);
-      // console.log(response);
+      console.log(response);
       // console.log(result);
     });
   });
