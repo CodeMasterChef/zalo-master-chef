@@ -5,12 +5,15 @@ module.exports = function (ZOAClient, userId, data, responseAI) {
 
     module.excute = function () {
         var isExisted;
-        if (responseAI.hasOwnProperty('name'))
-            isExisted = data.find(f => f.name.toLowerCase().indexOf(responseAI.name[0].value.toLowerCase()));
+        var keyword = responseAI.name[0].value;
+        if (responseAI.hasOwnProperty('name')) {
+            isExisted = data.find(f => f.name.toLowerCase().indexOf(keyword.toLowerCase()));
+            console.log(isExisted);
+        }
         if (isExisted) {
-            message = 'Có';
+            message = 'Có! Mua không?';
         } else {
-            message = 'Rất tiếc! Chúng tôi hiện không có mặt hàng này.';
+            message = 'Rất tiếc! Chúng tôi hiện không mặt hàng ' + keyword;
         }
         common.sendTextMessage(userId, message);
     }
