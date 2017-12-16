@@ -20,7 +20,7 @@ var MAN_HINH_HIEN_THI = 'màn hình hiển thị';
 var CAU_HINH_CHI_TIET = 'cấu hình chi tiết';
 var THONG_SO_VAT_LY = 'thông số vật lý';
 var KET_NOI_TINH_NANG = 'kết nối và tính năng';
-var THRESHOLD = 0.9;
+var THRESHOLD = 0.85;
 
 console.log(oaid);
 console.log(secretKey);
@@ -61,10 +61,22 @@ server.get('/webhook', (req, res) => {
       }
     };
 
-    request(options, function(error, response, body){
+    request(options, function (error, response, body) {
       // var result = JSON.parse(response.entities);
       console.log(response);
       // console.log(result);
+      if (response['priceAsking'].confidence > THRESHOLD) {
+        switch (key) {
+          case value:
+
+            break;
+
+          default:
+            break;
+        }
+      } else {
+        common.sendTextMessage();
+      }
     });
   });
 })
