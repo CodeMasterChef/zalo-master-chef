@@ -9,8 +9,8 @@ module.exports = function (ZOAClient, userId, data, responseAI) {
             return;
         }
 
-        console.log(data[0].name);
         var keyword = responseAI.name[0].value;
+        data.find(f=> console.log(f.name));
         var isExisted = data.find(f => f.name.toLowerCase().indexOf(keyword.toLowerCase()) !== -1);
         console.log(keyword);
         if (isExisted) {
