@@ -4,12 +4,12 @@ module.exports = function (ZOAClient, userId, data, responseAI) {
     var message = '';
 
     module.excute = function () {
-        console.log(responseAI.hasOwnProperty('name'));
         if (!responseAI.hasOwnProperty('name')) {
             common.sendTextMessage(userId, 'Rất tiếc! Chúng tôi hiện không mặt hàng này.');
             return;
         }
 
+        console.log(data[0]);
         var keyword = responseAI.name[0].value;
         var isExisted = data.find(f => f.name.toLowerCase().indexOf(keyword.toLowerCase()) !== -1);
         console.log(keyword);
