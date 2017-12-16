@@ -26,9 +26,12 @@ const server = express();
 server.use('/public', express.static('public'));
 // var oaid = process.env.OAID;
 // var secretKey = process.env.SECRET_KEY;
-
+////////// Master Chef page/////////
 var oaid = '3726559350739287571';
 var secretKey = 'Q72RCPL86JUZ4RyGM4Mi';
+/// Khanh - Master Chef page ////////////
+// var oaid = '2546696898504745117';
+// var secretKey = '5PBCEmZRhh7902VUKGHk';
 
 console.log(oaid);
 console.log(secretKey);
@@ -37,6 +40,7 @@ var zaConfig = {
   oaid: oaid,
   secretkey: secretKey
 }
+
 var ZOAClient = new ZaloOA(zaConfig);
 var common = require('./common.js')(ZOAClient);
 
@@ -93,8 +97,6 @@ server.get('/webhook', (req, res) => {
   });
 })
 
-
-
-var listener = server.listen(process.env.PORT || 3000, process.env.IP || "localhost", function () {
+var listener = server.listen(process.env.PORT || 3000, process.env.IP || "127.0.0.1", function () {
   console.log("Server listening at: " + listener.address().address + ":" + listener.address().port);
 });

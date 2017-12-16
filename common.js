@@ -31,6 +31,7 @@ module.exports = function (ZOAClient) {
         };
 
         ZOAClient.api('sendmessage/actionlist', 'POST', params, function (response) {
+            console.log('sendInteractionMessage');
             console.log(response);
         });
     }
