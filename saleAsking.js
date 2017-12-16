@@ -5,7 +5,7 @@ module.exports = function (ZOAClient, userId, data, responseAI) {
 
     module.excute = function () {
         var keyword = responseAI.name[0].value;
-        var isExisted = data.find(f => f.name.toLowerCase().indexOf(keyword.toLowerCase()));
+        var isExisted = data.find(f => f.name.toLowerCase().indexOf(keyword.toLowerCase()) !== -1);
 
         if (isExisted) {
             message = 'Có! Mua không?';
