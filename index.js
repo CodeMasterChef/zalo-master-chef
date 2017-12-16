@@ -57,7 +57,8 @@ server.get('/webhook', (req, res) => {
     var options = {
       url: 'https://api.wit.ai/message?v=16/12/2017&q=' + message,
       headers: {
-        'Authorization': 'Bearer 6ACPVMBT56A2L3IYAJHKBRQQO2YCH6TN'
+        'Authorization': 'Bearer 6ACPVMBT56A2L3IYAJHKBRQQO2YCH6TN',
+        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
       }
     };
 
