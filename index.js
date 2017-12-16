@@ -1,10 +1,8 @@
 
 var express = require('express');
-var https = require('https');
 var ZaloOA = require('zalo-sdk').ZaloOA;
 
 var jsonFile = require('./final-rel-path.json');
-console.log(jsonFile);
 
 // constant
 var MUA_HANG = 'mua hàng';
@@ -28,7 +26,6 @@ console.log(oaid);
 console.log(secretKey);
 
 const server = express();
-const https = https();
 
 var zaConfig = {
   oaid: oaid,
@@ -41,9 +38,9 @@ server.get('/', (req, res) => {
   console.log("Server is started");
 });
 
-https.get('./final-rel-path.json', (req, res) => {
-  console.log(req);
-});
+// https.get('./final-rel-path.json', (req, res) => {
+//   console.log(req);
+// });
 
 server.get('/webhook', (req, res) => {
   console.log("User had send a message.");
