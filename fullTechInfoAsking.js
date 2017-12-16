@@ -18,7 +18,7 @@ module.exports = function(ZOAClient, userId , data, responseAI){
             var stringData = JSON.stringify(product.fullTechInfo);
             var stringResponse = stringData.replace(/[{}]/g, '\n');
             stringResponse = stringResponse.replace(/\",/g, '\n');
-            stringResponse = stringResponse.replace(/\"/g, '')
+            stringResponse = stringResponse.replace(/\"/g, '');
             common.sendTextMessage(userId ,  stringResponse); 
         }
         else {

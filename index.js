@@ -24,8 +24,11 @@ var THRESHOLD = 0.85;
 
 const server = express();
 server.use('/public', express.static('public'));
-var oaid = process.env.OAID;
-var secretKey = process.env.SECRET_KEY;
+// var oaid = process.env.OAID;
+// var secretKey = process.env.SECRET_KEY;
+
+var oaid = '3726559350739287571';
+var secretKey = 'Q72RCPL86JUZ4RyGM4Mi';
 
 console.log(oaid);
 console.log(secretKey);
@@ -51,6 +54,8 @@ server.get('/webhook', (req, res) => {
   console.log(message, userId);
   // lấy thông tin người dùng 
   ZOAClient.api('getprofile', { uid: userId }, function (response) {
+   
+    console.log(response);
     var profile = response.data;
     var username = profile['displayName'];
     var options = {
@@ -62,13 +67,12 @@ server.get('/webhook', (req, res) => {
 
     request(options, function (error, response, body) {
       var data = JSON.parse(body).entities;
-      console.log(Object.keys(data)[0]);
-      
-      switch (Object.keys(data)[0]) {
+      var mainCase = Object.keys(data)[0];
+      console.log(mainCase);
+      switch (mainCase) {
         case 'greetingAsking':
           common.sendTextMessage(userId, 'Xin chào, ' + username);
           break;
-
         case 'saleAsking':
           var saleAsking = require('./saleAsking.js')(ZOAClient, userId, jsonFile, data);
           saleAsking.excute();
@@ -76,6 +80,10 @@ server.get('/webhook', (req, res) => {
         case 'fullTechInfoAsking':
           var fullTechInfoAsking = require('./fullTechInfoAsking.js')(ZOAClient, userId, jsonFile, data);
           fullTechInfoAsking.execute();
+          break;
+        case 'policyAsking':
+          var policyAsking = require('./policyAsking.js')(ZOAClient, userId, jsonFile, data);
+          policyAsking.execute();
           break;
         default:
           common.sendTextMessage(userId, 'Xin chào, ' + username + ' mình không hiểu lắm!');
@@ -87,6 +95,6 @@ server.get('/webhook', (req, res) => {
 
 
 
-var listener = server.listen(process.env.PORT || 3000, process.env.IP || "0.0.0.0", function () {
+var listener = server.listen(process.env.PORT || 3000, process.env.IP || "localhost", function () {
   console.log("Server listening at: " + listener.address().address + ":" + listener.address().port);
 });
