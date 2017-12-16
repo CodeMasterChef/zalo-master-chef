@@ -53,7 +53,6 @@ server.get('/webhook', (req, res) => {
   ZOAClient.api('getprofile', { uid: userId }, function (response) {
     var profile = response.data;
     var username = profile.displayName;
-    console.log(encodeURI('https://api.wit.ai/message?v=16/12/2017&q=' + message));
     var options = {
       url: encodeURI('https://api.wit.ai/message?v=16/12/2017&q=' + message),
       headers: {
@@ -63,7 +62,6 @@ server.get('/webhook', (req, res) => {
 
     request(options, function (error, response, body) {
       var data = JSON.parse(body).entities;
-      console.log(body);
       switch (Object.keys(data)[0]) {
         case 'greetingAsking':
           common.sendTextMessage(userId, 'Xin chào, ' + username);
