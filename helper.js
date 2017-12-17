@@ -20,11 +20,13 @@ module.exports = function () {
         }
         if(!isExist) {
             var data = {};
+            data['userId'] = userId;
             data[key] = value;
             global.cache.push(data);
         }
     }
     module.getCache = function(userId) {
+        console.log(global.cache)
         for(var i = 0 ; i < global.cache.length ; i++) {
             if(global.cache[i].userId == userId) {
                return global.cache[i];

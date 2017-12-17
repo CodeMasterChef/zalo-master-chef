@@ -5,6 +5,27 @@ module.exports = function (ZOAClient, userId, data, responseAI) {
 
     module.execute = function () {
         var productNameList = responseAI.name;
+        if(productNameList == undefined) {
+            var productName = helper.getCache(userId).productName;
+            var product = null;
+            for (let i = 0; i < data.length; i++) {
+                if (data[i].name) {
+                    if (data[i].name.toLowerCase() === productName.toLowerCase()) {
+                        product = data[i];
+                    }
+                }
+            }
+            if (product && product.price) {
+                var stringResponse = helper.convertObjectTParagraph(product.price);
+                stringResponse = "Giá của sản phẩm " + product.name + " là: " + stringResponse;
+                common.sendTextMessage(userId, stringResponse);
+            } else { 
+                common.sendTextMessage(userId, "Rất tiếc. Không có thông tin về giá của sản phẩm " + productName);
+            }   
+            return;
+        }
+        
+        // multiple searching
         productNameList.forEach(element => {
             var queryProductName = element.value;
             var keyword = element.value.toLowerCase();

@@ -4,7 +4,7 @@ module.exports = function(ZOAClient, userId , data, responseAI){
     var helper = require('./helper.js')();
     module.execute  = function () {
 
-            var productName = (responseAI.name[0]) ?  responseAI.name[0].value : helper.getCache(userId).productName;
+            var productName = (responseAI.name) ?  responseAI.name[0].value : helper.getCache(userId).productName;
            
             var keyword = productName.toLowerCase();
             var product = null;
